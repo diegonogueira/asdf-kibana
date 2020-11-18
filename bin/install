@@ -51,7 +51,11 @@ untar_path() {
   local tmp_download_dir=$3
 
   if [ "$install_type" = "version" ]; then
-    echo "$tmp_download_dir/kibana-${version}"
+    if [[ "$operating_system" =~ "Darwin" ]]; then
+      echo "$tmp_download_dir/kibana-${version}-darwin-x86_64"
+    else
+      echo "$tmp_download_dir/kibana-${version}-linux-x86_64"
+    fi
   else
     echo "$tmp_download_dir/kibana-${version}"
   fi
